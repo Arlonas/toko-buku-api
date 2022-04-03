@@ -10,6 +10,8 @@ const sequelize = new Sequelize({
     logging: false
 })
 
+const Tag = require("../models/tag")(sequelize)
 module.exports = {
-    sequelize
+    sequelize,
+    Tag
 }

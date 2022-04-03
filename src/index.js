@@ -5,12 +5,26 @@ const dotenv = require("dotenv")
 
 dotenv.config()
 
-const PORT =process.env.PORT
+const PORT = process.env.PORT
+
+const { sequelize } = require("./lib/sequelize")
+sequelize.sync({ alter: true })
+
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
+
+const { tagRoutes } = require("./routes")
+
+app.use("/tags", tagRoutes)
+
+app.use((req, res) => {
+    return res.status(500).json({
+        message:"Server error"
+    })
+})
 
 app.listen(PORT, () => {
     console.log("Listening in port", PORT)
