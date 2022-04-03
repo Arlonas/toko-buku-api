@@ -16,9 +16,10 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-const { tagRoutes } = require("./routes")
+const { tagRoutes,bookRoutes } = require("./routes")
 
 app.use("/tags", tagRoutes)
+app.use("/books", bookRoutes)
 
 app.use((req, res) => {
     return res.status(500).json({
