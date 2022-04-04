@@ -11,7 +11,17 @@ const sequelize = new Sequelize({
 })
 
 const Tag = require("../models/tag")(sequelize)
+const Book = require("../models/books")(sequelize)
+const booksTag = require("../models/books_tags")(sequelize)
+
+ Book.hasMany(booksTag, { foreignKey: "book_id" }) 
+ booksTag.belongsTo(Book, { foreignKey: "book_id" })
+ Tag.hasMany(booksTag, { foreignKey: "tag_id" }) 
+ booksTag.belongsTo(Tag, { foreignKey: "tag_id" })
+
 module.exports = {
     sequelize,
-    Tag
+    Tag,
+    Book,
+    booksTag
 }

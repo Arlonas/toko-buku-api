@@ -1,10 +1,10 @@
-const { tagControllers } = require("../controllers")
+const { tagControllers, bookControllers } = require("../controllers")
 
 const router = require("express").Router()
 
-router.get("/", tagControllers.getAllTags)
-router.post("/", tagControllers.createNewTag)
-router.patch("/:id", tagControllers)
-router.delete("/:id", tagControllers.deleteTagById)
+router.get("/", bookControllers.getAllBooks)
+router.post("/", bookControllers.createBook)
+router.patch("/:id", bookControllers.updateBook)
+router.delete("/:id", bookControllers.deleteBook)
 
 module.exports = router
